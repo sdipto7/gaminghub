@@ -32,15 +32,15 @@ public class UserController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    @GetMapping(name = "/list")
-    public ResponseEntity<List<UserDto>> showUserList() {
-        List<UserDto> userDtoList = userService.findAll()
-                .stream()
-                .map(user -> userHelper.convertUsertoUserDto(user))
-                .collect(Collectors.toList());
-
-        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
-    }
+//    @GetMapping(name = "/userList")
+//    public ResponseEntity<List<UserDto>> showUserList() {
+//        List<UserDto> userDtoList = userService.findAll()
+//                .stream()
+//                .map(user -> userHelper.convertUsertoUserDto(user))
+//                .collect(Collectors.toList());
+//
+//        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
+//    }
 
     @PostMapping(name = "/save")
     public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {

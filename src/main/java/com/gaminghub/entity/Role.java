@@ -7,6 +7,7 @@ package com.gaminghub.entity;
 public enum Role {
 
     ROLE_LOGIN_DELETE("Login Delete"),
+    ROLE_USER_UPDATE("User Update"),
     ROLE_USER_DELETE("User Delete"),
     ROLE_GAME_CREATE("Game Create"),
     ROLE_GAME_UPDATE("Game Update"),

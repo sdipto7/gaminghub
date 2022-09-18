@@ -1,4 +1,5 @@
-CREATE TABLE gaming_hub.gh_user
+Terminal close -- exit!
+gh_user
 (
     id           INT          NOT NULL AUTO_INCREMENT,
     created      DATETIME     NOT NULL,
