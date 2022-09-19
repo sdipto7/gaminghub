@@ -1,0 +1,17 @@
+-- INSERT INTO gaming_hub.gh_user
+-- VALUES (1, '2022-8-1 17:01:00', NULL, 0, 'Shahriar', 'Dipto', 'Diluroad', 'ADMIN', 1),
+--        (2, '2022-8-1 17:01:00', NULL, 0, 'Aunabil', 'Chakma', 'Farmgate', 'MANAGEMENT', 1),
+--        (3, '2022-8-1 17:01:00', NULL, 0, 'Pankaj', 'Kar', 'Banani', 'MANAGEMENT', 1),
+--        (4, '2022-8-1 17:01:00', NULL, 0, 'Paul', 'Richie', 'Farmgate', 'SALES_EXECUTIVE', 1),
+--        (5, '2022-8-1 17:01:00', NULL, 0, 'Faiyaz', 'Ahmed', 'Khilgaon', 'SALES_EXECUTIVE', 1),
+--        (6, '2022-8-1 17:01:00', NULL, 0, 'Jonaed', 'Ahmed', 'Modhubag', 'CUSTOMER', 1),
+--        (7, '2022-8-1 17:01:00', NULL, 0, 'Aubinal', 'Marma', 'Farmgate', 'CUSTOMER', 1);
+--
+-- INSERT INTO gaming_hub.gh_login
+-- VALUES (1, '2022-8-1 17:01:00', NULL, 0, 'dipto', MD5('pass'), 1),
+--        (2, '2022-8-1 17:01:00', NULL, 0, 'aunabil', MD5('pass'), 2),
+--        (3, '2022-8-1 17:01:00', NULL, 0, 'pankaj', MD5('pass'), 3),
+--        (4, '2022-8-1 17:01:00', NULL, 0, 'paul', MD5('pass'), 4),
+--        (5, '2022-8-1 17:01:00', NULL, 0, 'faiyaz', MD5('pass'), 5),
+--        (6, '2022-8-1 17:01:00', NULL, 0, 'jonaed', MD5('pass'), 6),
+--        (7, '2022-8-1 17:01:00', NULL, 0, 'aubinal', MD5('pass'), 7);
