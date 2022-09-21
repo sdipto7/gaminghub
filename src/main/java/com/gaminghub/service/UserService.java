@@ -25,11 +25,21 @@ public class UserService {
         return user.isPresent() ? user.get() : null;
     }
 
+    public User findByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+
+        return user.isPresent() ? user.get() : null;
+    }
+
+    public Boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
     public List<User> findAll() {
         return userRepository.findAll(Sort.by(Sort.Direction.DESC));
     }
 
-    public void saveOrUpdate(User user) {
-        userRepository.save(user);
+    public User saveOrUpdate(User user) {
+        return userRepository.save(user);
     }
 }

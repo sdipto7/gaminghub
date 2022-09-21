@@ -1,6 +1,8 @@
 package com.gaminghub.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -13,6 +15,8 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "gh_acl")
 public class Acl extends Persistent {
@@ -24,5 +28,6 @@ public class Acl extends Persistent {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

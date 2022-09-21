@@ -34,7 +34,7 @@ public class User extends Persistent {
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    private UserType type;
+    private UserType userType;
 
     @Column(name = "activated")
     private boolean activated;

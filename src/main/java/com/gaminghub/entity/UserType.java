@@ -19,4 +19,13 @@ public enum UserType {
     UserType(String label) {
         this.label = label;
     }
+
+    public static UserType getUserTypeByLabel(String label) {
+        for (UserType userType : values()) {
+            if (userType.getLabel().equals(label)) {
+                return userType;
+            }
+        }
+        return null;
+    }
 }
