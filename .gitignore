@@ -14,3 +14,27 @@ build/
 !**/src/main/**/out/
 !**/src/test/**/out/
 /src/test/
+
+# REACTJS
+# dependencies
+src/main/webapp/WEB-INF/gaminghubview/node_modules
+src/main/webapp/WEB-INF/gaminghubview/.pnp
+src/main/webapp/WEB-INF/gaminghubview/.pnp.js
+
+# testing
+src/main/webapp/WEB-INF/gaminghubview/coverage
+
+# production
+src/main/webapp/WEB-INF/gaminghubview/build
+src/main/webapp/WEB-INF/gaminghubview/README.md
+
+# misc
+src/main/webapp/WEB-INF/gaminghubview/.DS_Store
+src/main/webapp/WEB-INF/gaminghubview/.env.local
+src/main/webapp/WEB-INF/gaminghubview/.env.development.local
+src/main/webapp/WEB-INF/gaminghubview/.env.test.local
+src/main/webapp/WEB-INF/gaminghubview/.env.production.local
+
+src/main/webapp/WEB-INF/gaminghubview/npm-debug.log*
+src/main/webapp/WEB-INF/gaminghubview/yarn-debug.log*
+src/main/webapp/WEB-INF/gaminghubview/yarn-error.log*
