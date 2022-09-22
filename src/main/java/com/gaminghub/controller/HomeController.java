@@ -1,12 +1,11 @@
 package com.gaminghub.controller;
 
+import com.gaminghub.dto.UserDto;
 import com.gaminghub.entity.User;
-import com.gaminghub.entity.UserType;
 import com.gaminghub.helper.AclHelper;
 import com.gaminghub.helper.UserHelper;
 import com.gaminghub.model.AuthenticationResponse;
-import com.gaminghub.model.SignInRequest;
-import com.gaminghub.model.SignUpRequest;
+import com.gaminghub.model.AuthenticationRequest;
 import com.gaminghub.service.CustomUserDetailsService;
 import com.gaminghub.service.UserService;
 import com.gaminghub.util.JwtUtil;
@@ -52,32 +51,31 @@ public class HomeController {
         return ResponseEntity.ok("Hello World");
     }
 
-    @PostMapping(value = "/SignIn", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAuthenticationTokenForSignIn(@RequestBody SignInRequest signInRequest) throws Exception {
+    @PostMapping(value = "/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createAuthenticationTokenForSignIn(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
-            System.out.println("In here");
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword()));
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(signInRequest.getUsername());
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String jwt = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping(value = "/SignUp", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAuthenticationTokenForSignUp(@RequestBody SignUpRequest signUpRequest) throws Exception {
-        if (userService.existsByUsername(signUpRequest.getUsername())) {
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+        if (userService.existsByUsername(userDto.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body("Error: Username is already taken!");
         }
 
-        User savedUser = userHelper.getSavedUserFromSignUpRequest(signUpRequest);
+        User savedUser = userHelper.mapAndGetSavedUserForSignUp(userDto);
 
         aclHelper.setRoleAndCreateAclForUser(savedUser);
 

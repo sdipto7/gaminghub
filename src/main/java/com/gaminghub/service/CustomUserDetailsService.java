@@ -5,13 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import static java.util.Objects.*;
+import static java.util.Objects.isNull;
 
 /**
  * @author rumi.dipto
@@ -25,19 +23,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userService.findByUsername(username);
-//
-//        if (isNull(user)) {
-//            throw new UsernameNotFoundException(username);
-//        }
-//
-//        UserDetails userDetails = org.springframework.security.core.userdetails.User
-//                .withUsername(user.getUsername())
-//                .password(user.getPassword())
-//                .authorities(new ArrayList<>()).build();
-//
-//        return userDetails;
+        User user = userService.findByUsername(username);
 
-        return new org.springframework.security.core.userdetails.User("rumi","pass", new ArrayList<>());
+        if (isNull(user)) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        UserDetails userDetails = org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .authorities(new ArrayList<>()).build();
+
+        return userDetails;
     }
 }

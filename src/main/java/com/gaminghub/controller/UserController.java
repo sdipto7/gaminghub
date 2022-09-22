@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * @author rumi.dipto
  * @since 8/22/22
@@ -27,7 +24,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<UserDto> showUser(@RequestParam int id) {
-        UserDto userDto = userHelper.convertUsertoUserDto(userService.find(id));
+        UserDto userDto = userHelper.convertUserToUserDto(userService.find(id));
 
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

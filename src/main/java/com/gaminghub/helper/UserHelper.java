@@ -3,7 +3,6 @@ package com.gaminghub.helper;
 import com.gaminghub.dto.UserDto;
 import com.gaminghub.entity.User;
 import com.gaminghub.entity.UserType;
-import com.gaminghub.model.SignUpRequest;
 import com.gaminghub.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserHelper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public UserDto convertUsertoUserDto(User user) {
+    public UserDto convertUserToUserDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }
 
@@ -34,14 +33,10 @@ public class UserHelper {
         return modelMapper.map(userDto, User.class);
     }
 
-    public User getSavedUserFromSignUpRequest(SignUpRequest signUpRequest) {
-        User user = new User();
-        user.setFirstName(signUpRequest.getFirstName());
-        user.setLastName(signUpRequest.getLastName());
-        user.setUsername(signUpRequest.getUsername());
-        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
-        user.setAddress(signUpRequest.getAddress());
-        user.setUserType(UserType.getUserTypeByLabel(signUpRequest.getUserType()));
+    public User mapAndGetSavedUserForSignUp(UserDto userDto) {
+        User user = convertUserDtoToUser(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setUserType(UserType.getUserTypeByLabel(userDto.getUserType()));
         user.setActivated(false);
 
         return userService.saveOrUpdate(user);

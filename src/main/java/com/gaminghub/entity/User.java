@@ -36,6 +36,9 @@ public class User extends Persistent {
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    @Column(name = "access_token")
+    private String accessToken;
+
     @Column(name = "activated")
     private boolean activated;
 }
