@@ -11,7 +11,6 @@ public enum UserType {
 
     USER_TYPE_ADMIN("Admin"),
     USER_TYPE_MANAGEMENT("Management"),
-    USER_TYPE_SALES_EXECUTIVE("Sales Executive"),
     USER_TYPE_CUSTOMER("Customer");
 
     private String label;

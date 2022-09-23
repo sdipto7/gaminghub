@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.gaminghub.entity.Role.*;
+import static com.gaminghub.util.Constant.*;
 
 /**
  * @author rumi.dipto
@@ -28,16 +28,13 @@ public class AclHelper {
 
         switch (user.getUserType()) {
             case USER_TYPE_ADMIN:
-                roleSet.addAll(Arrays.asList(values()));
+                roleSet.addAll(Arrays.asList(ADMIN_ROLES));
                 break;
             case USER_TYPE_MANAGEMENT:
-                roleSet.addAll(Arrays.asList(ROLE_GAME_CREATE, ROLE_GAME_UPDATE));
-                break;
-            case USER_TYPE_SALES_EXECUTIVE:
-                roleSet.addAll(Arrays.asList(ROLE_GAME_CREATE, ROLE_GAME_UPDATE));
+                roleSet.addAll(Arrays.asList(MANAGEMENT_ROLES));
                 break;
             case USER_TYPE_CUSTOMER:
-                roleSet.add(ROLE_USER_UPDATE);
+                roleSet.addAll(Arrays.asList(CUSTOMER_ROLES));
                 break;
         }
 
