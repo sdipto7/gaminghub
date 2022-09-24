@@ -1,23 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
 
+import {Container} from 'reactstrap';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './component/Home';
+import {Row, Col} from "reactstrap";
+import Header from './component/Header';
+import Menu from './component/Menu';
+import Dashboard from './component/Dashboard';
+import ProtectedRoute from "./component/ProtectedRoute";
+import RegistrationForm from "./component/user/RegistrationForm"
+import LoginForm from "./component/user/LoginForm";
+
 function App() {
+
+    // const isLogged = window.localStorage.getItem("isLogged");
+    const isLoggedIn = false;
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <Router>
+                <Container>
+                    <Header/>
+                    {isLoggedIn ?
+                        <Row>
+                            <Col md={3}>
+                                <Menu/>
+                            </Col>
+
+                            <Col md={9}>
+                                <Routes>
+                                    {/*<Route element={<ProtectedRoute forRole={"ROLE_ADMIN"}/>}>*/}
+                                    <Route path="/" element={<Home/>}/>
+                                    <Route path="/dashboard" element={<Dashboard/>}/>
+                                    {/*</Route>*/}
+                                </Routes>
+                            </Col>
+                        </Row> :
+                        <div>
+                            <Routes>
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="/register" element={<RegistrationForm/>}></Route>
+                                <Route path="/login" element={<LoginForm/>}></Route>
+                            </Routes>
+                        </div>
+                    }
+                </Container>
+            </Router>
         </div>
     );
 }

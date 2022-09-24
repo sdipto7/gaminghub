@@ -16,16 +16,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author rumi.dipto
  * @since 8/24/22
  */
 @RestController
+@RequestMapping("/api")
+@CrossOrigin("http://localhost:3000")
 public class HomeController {
 
     @Autowired
@@ -46,13 +45,8 @@ public class HomeController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @GetMapping("/")
-    public ResponseEntity<?> hello() {
-        return ResponseEntity.ok("Hello World");
-    }
-
-    @PostMapping(value = "/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAuthenticationTokenForSignIn(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createAuthenticationTokenForLogin(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
