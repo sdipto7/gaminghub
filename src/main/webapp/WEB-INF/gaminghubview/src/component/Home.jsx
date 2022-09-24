@@ -28,7 +28,7 @@ export default function Home() {
                     className="mx-2"
                     onClick={() => onRegisterClick()}
                     color="primary"
-                    outline color="warning">
+                    outline color="primary">
                     Register
                 </Button>
 
@@ -36,7 +36,7 @@ export default function Home() {
                     className="mx-2"
                     onClick={() => onLoginClick()}
                     color="primary"
-                    outline color="warning">
+                    outline color="primary">
                     Login
                 </Button>
             </Container>

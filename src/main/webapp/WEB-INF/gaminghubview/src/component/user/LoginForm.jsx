@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {Container, Form, FormGroup, Input, Label, Button} from "reactstrap";
 
-import {Fragment} from "react";
 import {findUserForLogin} from "../../api/UserApi";
 import {findUserUrl} from "../../resource/Url";
 
@@ -21,7 +20,6 @@ export default function LoginForm() {
         event.preventDefault();
         let response = await findUserForLogin(findUserUrl, user);
     };
-
 
     return (
         <Fragment>
@@ -71,7 +69,7 @@ export default function LoginForm() {
                             size="lg"
                             className="my-2"
                             style={{width: "20%"}}
-                            color="success">
+                            color="dark">
                             Login
                         </Button>
                     </Container>

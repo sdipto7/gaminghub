@@ -2,12 +2,13 @@ package com.gaminghub.helper;
 
 import com.gaminghub.dto.UserDto;
 import com.gaminghub.entity.User;
-import com.gaminghub.entity.UserType;
 import com.gaminghub.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import static com.gaminghub.entity.UserType.USER_TYPE_CUSTOMER;
 
 /**
  * @author rumi.dipto
@@ -33,10 +34,10 @@ public class UserHelper {
         return modelMapper.map(userDto, User.class);
     }
 
-    public User mapAndGetSavedUserForSignUp(UserDto userDto) {
+    public User mapAndGetSavedCustomerForRegister(UserDto userDto) {
         User user = convertUserDtoToUser(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setUserType(UserType.getUserTypeByLabel(userDto.getUserType()));
+        user.setUserType(USER_TYPE_CUSTOMER);
         user.setActivated(false);
 
         return userService.saveOrUpdate(user);

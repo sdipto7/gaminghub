@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 8/24/22
  */
 @RestController
-@RequestMapping("/api")
 @CrossOrigin("http://localhost:3000")
 public class HomeController {
 
@@ -62,14 +61,14 @@ public class HomeController {
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> registerCustomer(@RequestBody UserDto userDto) {
         if (userService.existsByUsername(userDto.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body("Error: Username is already taken!");
         }
 
-        User savedUser = userHelper.mapAndGetSavedUserForSignUp(userDto);
+        User savedUser = userHelper.mapAndGetSavedCustomerForRegister(userDto);
 
         aclHelper.setRoleAndCreateAclForUser(savedUser);
 
