@@ -18,6 +18,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author rumi.dipto
  * @since 8/24/22
@@ -61,7 +63,7 @@ public class HomeController {
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> registerCustomer(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> registerCustomer(@Valid @RequestBody UserDto userDto) {
         if (userService.existsByUsername(userDto.getUsername())) {
             return ResponseEntity
                     .badRequest()

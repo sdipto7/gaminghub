@@ -21,7 +21,7 @@ export const findUserForLogin = (url, user) => {
     });
 };
 
-export const registerUser = (url, user) => {
+export const registerCustomer = (url, user) => {
 
     return new Promise((resolve, reject) => {
         axios.post(`${url}`, JSON.stringify(
@@ -30,7 +30,8 @@ export const registerUser = (url, user) => {
                     lastName: user.lastName,
                     username: user.username,
                     password: user.password,
-                    address: user.address
+                    address: user.address,
+                    userType: "Customer"
                 }), {
                 headers: {
                     'Content-Type': 'application/json'

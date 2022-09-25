@@ -1,11 +1,17 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 
-import {registerUser} from "../../api/UserApi";
-import {registerUserUrl} from "../../resource/Url";
+import {registerCustomer} from "../../api/UserApi";
+import {registerCustomerUrl} from "../../resource/Url";
+import {
+    frontendValidationForCustomerRegistration,
+    apiValidationForCustomerRegistration
+} from "../../validator/UserValidator";
 
 export default function RegistrationForm() {
+
     const [user, setUser] = useState({});
+    const [formValidation, setFormValidation] = useState({});
 
     useEffect(() => {
         document.title = "GamingHub | Register";
@@ -18,7 +24,16 @@ export default function RegistrationForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let response = await registerUser(registerUserUrl, user);
+
+        setFormValidation(frontendValidationForCustomerRegistration(user));
+
+        if (Object.keys(formValidation).length === 0) {
+            let response = await registerCustomer(registerCustomerUrl, user);
+
+            response.hasError ?
+                setFormValidation(apiValidationForCustomerRegistration(response.errors))
+                : setUser({firstName: '', lastName: '', username: '', password: '', address: ''});
+        }
     };
 
     return (
@@ -44,6 +59,9 @@ export default function RegistrationForm() {
                                 id='firstName'
                                 value={user.firstName}
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.firstName}
+                            </p>
                         </FormGroup>
                     </div>
 
@@ -61,6 +79,9 @@ export default function RegistrationForm() {
                                 id='lastName'
                                 value={user.lastName}
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.lastName}
+                            </p>
                         </FormGroup>
                     </div>
 
@@ -78,6 +99,9 @@ export default function RegistrationForm() {
                                 id='username'
                                 value={user.username}
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.username}
+                            </p>
                         </FormGroup>
                     </div>
 
@@ -94,6 +118,9 @@ export default function RegistrationForm() {
                                 value={user.password}
                                 id='password'
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.password}
+                            </p>
                         </FormGroup>
                     </div>
 
@@ -110,6 +137,9 @@ export default function RegistrationForm() {
                                 value={user.address}
                                 id='password'
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.address}
+                            </p>
                         </FormGroup>
                     </div>
 
