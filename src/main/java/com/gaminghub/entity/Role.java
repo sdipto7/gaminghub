@@ -1,9 +1,12 @@
 package com.gaminghub.entity;
 
+import lombok.Getter;
+
 /**
  * @author rumi.dipto
  * @since 8/21/22
  */
+@Getter
 public enum Role {
 
     ROLE_ADMIN_VIEW("Admin View"),

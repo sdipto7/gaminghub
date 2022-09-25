@@ -32,6 +32,8 @@ export default function RegistrationForm() {
             response.hasError ?
                 setFormValidation(apiValidationForCustomerRegistration(response.errors))
                 : setUser({firstName: '', lastName: '', username: '', password: '', address: ''});
+
+            window.location.href = "/";
         }
     };
 

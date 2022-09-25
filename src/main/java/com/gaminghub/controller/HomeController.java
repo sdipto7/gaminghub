@@ -4,21 +4,28 @@ import com.gaminghub.dto.UserDto;
 import com.gaminghub.entity.User;
 import com.gaminghub.helper.AclHelper;
 import com.gaminghub.helper.UserHelper;
-import com.gaminghub.model.AuthenticationResponse;
 import com.gaminghub.model.AuthenticationRequest;
+import com.gaminghub.model.AuthenticationResponse;
 import com.gaminghub.service.CustomUserDetailsService;
 import com.gaminghub.service.UserService;
 import com.gaminghub.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author rumi.dipto
@@ -57,9 +64,16 @@ public class HomeController {
 
         final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
-        final String jwt = jwtUtil.generateToken(userDetails);
+        final String accessToken = jwtUtil.generateToken(userDetails);
+        ResponseCookie accessCookie = ResponseCookie.from("accessToken", accessToken).path("/").maxAge(24 * 60 * 60).httpOnly(true).build();
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        Set<String> roleSet = new HashSet<>();
+        userDetails.getAuthorities().stream().forEach(grantedAuthority -> roleSet.add(String.valueOf(grantedAuthority)));
+
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
+                .body(new AuthenticationResponse(authenticationRequest.getUsername(), roleSet));
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)

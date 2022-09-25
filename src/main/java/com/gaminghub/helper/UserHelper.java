@@ -2,6 +2,7 @@ package com.gaminghub.helper;
 
 import com.gaminghub.dto.UserDto;
 import com.gaminghub.entity.User;
+import com.gaminghub.entity.UserType;
 import com.gaminghub.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UserHelper {
     public User mapAndGetSavedCustomerForRegister(UserDto userDto) {
         User user = convertUserDtoToUser(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setUserType(USER_TYPE_CUSTOMER);
+        user.setUserType(UserType.getUserTypeByLabel(userDto.getUserType()));
         user.setActivated(false);
 
         return userService.saveOrUpdate(user);

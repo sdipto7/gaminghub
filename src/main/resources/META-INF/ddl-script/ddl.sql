@@ -1,5 +1,4 @@
-Terminal close -- exit!
-gh_user
+CREATE TABLE gaming_hub.gh_user
 (
     id           INT          NOT NULL AUTO_INCREMENT,
     created      DATETIME     NOT NULL,
@@ -11,25 +10,12 @@ gh_user
     password     VARCHAR(100) NOT NULL,
     address      VARCHAR(100) NOT NULL,
     type         VARCHAR(100) NOT NULL,
-    access_token VARCHAR(256) NOT NULL,
-    activated    TINYINT(1) NOT NULL,
-    PRIMARY KEY (id)
-);
-
--- CREATE TABLE gaming_hub.gh_login
--- (
---     id       INT          NOT NULL AUTO_INCREMENT,
---     created  DATETIME     NOT NULL,
---     updated  DATETIME,
---     version  INT          NOT NULL,
---     username VARCHAR(100) NOT NULL,
---     password VARCHAR(100) NOT NULL,
 --     access_token VARCHAR(256) NOT NULL,
---     user_id  INT          NOT NULL,
---     PRIMARY KEY (id),
---     CONSTRAINT gh_login_uk_username UNIQUE (username),
---     CONSTRAINT gh_login_fk_user_id FOREIGN KEY (user_id) REFERENCES gaming_hub.gh_user (id)
--- );
+    access_token VARCHAR(256),
+    activated    TINYINT(1) NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT gh_user_uk_username UNIQUE (username)
+);
 
 CREATE TABLE gaming_hub.gh_acl
 (

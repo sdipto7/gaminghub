@@ -9,8 +9,8 @@ export default function Dashboard() {
 
     return(
         <div className="text-center">
-            <h3>Home Page</h3>
-            <p>Some contents for the home page</p>
+            <h3>Dashboard</h3>
+            <p>Contents for Dashboard</p>
 
             <Container>
                 <Button color="primary">Start Using</Button>
