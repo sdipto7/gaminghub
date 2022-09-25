@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author rumi.dipto
@@ -17,7 +17,9 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class AuthenticationRequest {
 
+    @NotNull(message = "This is required field")
     private String username;
 
+    @NotNull(message = "This is required field")
     private String password;
 }

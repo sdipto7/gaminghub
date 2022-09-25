@@ -3,9 +3,11 @@ import {Container, Form, FormGroup, Input, Label, Button} from "reactstrap";
 
 import {findUserForLogin} from "../../api/UserApi";
 import {findUserUrl} from "../../resource/Url";
+import {apiValidationForLogin, frontendValidationForLogin} from "../../validator/UserValidator";
 
 export default function LoginForm() {
     const [user, setUser] = useState({});
+    const [formValidation, setFormValidation] = useState({});
 
     useEffect(() => {
         document.title = "GamingHub | Login";
@@ -18,7 +20,19 @@ export default function LoginForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let response = await findUserForLogin(findUserUrl, user);
+
+        setFormValidation(frontendValidationForLogin(user));
+
+        if (Object.keys(formValidation).length === 0) {
+            let response = await findUserForLogin(findUserUrl, user);
+
+            response.hasError ?
+                setFormValidation(apiValidationForLogin(response.errors))
+                : setUser({username: '', password: ''});
+
+            window.localStorage.setItem("isLoggedIn", true);
+            window.location.href = "/dashboard";
+        }
     };
 
     return (
@@ -44,6 +58,9 @@ export default function LoginForm() {
                                 id='username'
                                 value={user.username}
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.username}
+                            </p>
                         </FormGroup>
                     </div>
 
@@ -60,6 +77,9 @@ export default function LoginForm() {
                                 value={user.password}
                                 id='password'
                                 onChange={onChange}/>
+                            <p style={{color: 'red'}}>
+                                {formValidation.password}
+                            </p>
                         </FormGroup>
                     </div>
 

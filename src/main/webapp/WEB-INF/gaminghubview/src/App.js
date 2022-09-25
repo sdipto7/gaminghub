@@ -13,8 +13,7 @@ import LoginForm from "./component/user/LoginForm";
 
 function App() {
 
-    // const isLogged = window.localStorage.getItem("isLogged");
-    const isLoggedIn = false;
+    const isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
     return (
         <div className="App">

@@ -9,7 +9,6 @@ import {
 } from "../../validator/UserValidator";
 
 export default function RegistrationForm() {
-
     const [user, setUser] = useState({});
     const [formValidation, setFormValidation] = useState({});
 

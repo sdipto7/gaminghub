@@ -1,3 +1,17 @@
+export const frontendValidationForLogin = (user) => {
+    const errors = {};
+
+    if (user.username === null || user.username === undefined || user.username == '') {
+        errors.username = "Username is required";
+    }
+
+    if (user.password === null || user.password === undefined || user.password == '') {
+        errors.password = "Password is required";
+    }
+
+    return errors;
+}
+
 export const apiValidationForLogin = (user) => {
     const errors = {};
 
