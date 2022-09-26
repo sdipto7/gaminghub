@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Container } from 'reactstrap';
+import {Container, Button} from 'react-bootstrap';
 
 export default function Dashboard() {
 

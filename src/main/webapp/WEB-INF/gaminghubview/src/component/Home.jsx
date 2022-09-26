@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import {Button, Container} from 'reactstrap';
-import {useNavigate} from "react-router-dom";
+import {Button, Container} from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 
 export default function Home() {
 
@@ -20,6 +20,7 @@ export default function Home() {
 
     return (
         <div className="text-center">
+
             <h3>Register now or Click on Login if you already have an account</h3>
 
             <Container>

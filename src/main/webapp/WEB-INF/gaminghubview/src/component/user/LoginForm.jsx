@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Container, Form, FormGroup, Input, Label, Button} from "reactstrap";
+import {Button, Container, Form} from "react-bootstrap";
 
 import {findUserForLogin} from "../../api/UserApi";
 import {findUserUrl} from "../../resource/Url";
@@ -47,11 +47,11 @@ export default function LoginForm() {
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
 
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Username:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Username'
                                 name='username'
@@ -61,16 +61,16 @@ export default function LoginForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.username}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Password:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Password'
                                 name='password'
@@ -80,7 +80,7 @@ export default function LoginForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.password}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <Container className="text-center">
@@ -90,7 +90,7 @@ export default function LoginForm() {
                             className="my-2"
                             style={{width: "20%"}}
                             color="dark">
-                            Login
+                            LOGIN
                         </Button>
                     </Container>
                 </Form>

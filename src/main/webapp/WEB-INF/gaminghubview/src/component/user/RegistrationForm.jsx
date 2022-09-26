@@ -1,11 +1,11 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Container, Form} from "react-bootstrap";
 
 import {registerCustomer} from "../../api/UserApi";
 import {registerCustomerUrl} from "../../resource/Url";
 import {
-    frontendValidationForCustomerRegistration,
-    apiValidationForCustomerRegistration
+    apiValidationForCustomerRegistration,
+    frontendValidationForCustomerRegistration
 } from "../../validator/UserValidator";
 
 export default function RegistrationForm() {
@@ -49,11 +49,11 @@ export default function RegistrationForm() {
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
 
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 First Name:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter First Name'
                                 name='firstName'
@@ -63,17 +63,17 @@ export default function RegistrationForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.firstName}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
 
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Last Name:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Last Name'
                                 name='lastName'
@@ -83,17 +83,17 @@ export default function RegistrationForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.lastName}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
 
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Username:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Username'
                                 name='username'
@@ -103,16 +103,16 @@ export default function RegistrationForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.username}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Password:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Password'
                                 name='password'
@@ -122,16 +122,16 @@ export default function RegistrationForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.password}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <div className="m-auto align-self-center"
                          style={{width: '50%'}}>
-                        <FormGroup>
-                            <Label>
+                        <Form.Group>
+                            <Form.Label>
                                 Address:
-                            </Label>
-                            <Input
+                            </Form.Label>
+                            <Form.Control
                                 type='text'
                                 placeholder='Enter Address'
                                 name='address'
@@ -141,7 +141,7 @@ export default function RegistrationForm() {
                             <p style={{color: 'red'}}>
                                 {formValidation.address}
                             </p>
-                        </FormGroup>
+                        </Form.Group>
                     </div>
 
                     <Container className="text-center">
@@ -151,7 +151,7 @@ export default function RegistrationForm() {
                             className="my-2"
                             style={{width: "20%"}}
                             color="dark">
-                            Register
+                            REGISTER
                         </Button>
                     </Container>
                 </Form>
