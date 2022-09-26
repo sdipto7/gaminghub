@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import static com.gaminghub.entity.UserType.USER_TYPE_CUSTOMER;
-
 /**
  * @author rumi.dipto
  * @since 8/23/22
@@ -42,5 +40,11 @@ public class UserHelper {
         user.setActivated(false);
 
         return userService.saveOrUpdate(user);
+    }
+
+    public void setUserAccessTokenForLogin(String username, String accessToken) {
+        User user = userService.findByUsername(username);
+        user.setAccessToken(accessToken);
+        userService.saveOrUpdate(user);
     }
 }

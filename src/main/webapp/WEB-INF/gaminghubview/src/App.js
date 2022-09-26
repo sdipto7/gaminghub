@@ -13,8 +13,7 @@ import LoginForm from "./component/user/LoginForm";
 
 function App() {
 
-    // const isLoggedIn = window.localStorage.getItem("isLoggedIn");
-    const isLoggedIn = true;
+    const isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
     return (
         <div className="App">
@@ -30,10 +29,9 @@ function App() {
 
                             <Col md={9}>
                                 <Routes>
-                                    {/*<Route element={<ProtectedRoute forRole={"ROLE_ADMIN"}/>}>*/}
-                                    {/*<Route path="/" element={<Home/>}/>*/}
+                                    <Route element={<ProtectedRoute forRole={"Dashboard View"}/>}>
                                     <Route path="/dashboard" element={<Dashboard/>}/>
-                                    {/*</Route>*/}
+                                    </Route>
                                 </Routes>
                             </Col>
                         </Row>

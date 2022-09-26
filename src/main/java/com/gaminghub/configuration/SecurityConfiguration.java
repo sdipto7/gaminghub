@@ -1,6 +1,6 @@
 package com.gaminghub.configuration;
 
-import com.gaminghub.filter.JwtRequestFilter;
+import com.gaminghub.filter.AuthenticationFilter;
 import com.gaminghub.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private AuthenticationFilter authenticationFilter;
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -64,6 +64,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

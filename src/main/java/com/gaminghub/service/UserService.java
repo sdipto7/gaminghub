@@ -35,6 +35,12 @@ public class UserService {
         return userRepository.existsByUsername(username);
     }
 
+    public boolean isValidUser(String username, String accessToken) {
+        return existsByUsername(username)
+                ? findByUsername(username).getAccessToken().equals(accessToken)
+                : false;
+    }
+
     public List<User> findAll() {
         return userRepository.findAll(Sort.by(Sort.Direction.DESC));
     }

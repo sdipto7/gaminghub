@@ -11,6 +11,7 @@ import static com.gaminghub.entity.Role.*;
 public interface Constant {
 
     Role[] ADMIN_ROLES = new Role[]{
+            ROLE_DASHBOARD_VIEW,
             ROLE_ADMIN_VIEW,
             ROLE_ADMIN_CREATE,
             ROLE_ADMIN_DELETE,
@@ -25,6 +26,7 @@ public interface Constant {
     };
 
     Role[] MANAGEMENT_ROLES = new Role[]{
+            ROLE_DASHBOARD_VIEW,
             ROLE_ADMIN_VIEW,
             ROLE_MANAGEMENT_VIEW,
             ROLE_CUSTOMER_VIEW,
@@ -37,6 +39,7 @@ public interface Constant {
     };
 
     Role[] CUSTOMER_ROLES = new Role[]{
+            ROLE_DASHBOARD_VIEW,
             ROLE_CUSTOMER_CREATE,
             ROLE_GAME_VIEW,
             ROLE_ORDER_VIEW,

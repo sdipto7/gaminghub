@@ -9,6 +9,8 @@ import lombok.Getter;
 @Getter
 public enum Role {
 
+   ROLE_DASHBOARD_VIEW("Dashboard View"),
+
     ROLE_ADMIN_VIEW("Admin View"),
     ROLE_ADMIN_CREATE("Admin Create"),
     ROLE_ADMIN_UPDATE("Admin Update"),

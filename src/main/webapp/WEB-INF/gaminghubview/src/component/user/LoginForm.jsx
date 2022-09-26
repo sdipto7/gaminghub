@@ -26,10 +26,12 @@ export default function LoginForm() {
         if (Object.keys(formValidation).length === 0) {
             let response = await findUserForLogin(findUserUrl, user);
 
+            console.log(response);
             response.hasError ?
                 setFormValidation(apiValidationForLogin(response.errors))
                 : setUser({username: '', password: ''});
 
+            window.localStorage.setItem("role", response.data.role);
             window.localStorage.setItem("isLoggedIn", true);
             window.location.href = "/dashboard";
         }
